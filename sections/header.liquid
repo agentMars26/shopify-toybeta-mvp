@@ -15,7 +15,12 @@
       {% endfor %}
     </nav>
 
-    <a class="btn btn-secondary" href="{{ routes.cart_url }}">Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</a>
+    <div class="header-actions">
+      <a class="btn btn-secondary" href="{{ routes.search_url | default: '/search' }}">Search</a>
+      <button class="btn btn-primary" type="button" data-cart-toggle>
+        Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}
+      </button>
+    </div>
   </div>
 </header>
 

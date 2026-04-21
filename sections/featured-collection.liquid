@@ -1,17 +1,26 @@
 {% liquid
   assign collection = collections[section.settings.collection]
 %}
-<section class="section">
-  <div class="page-width">
+<section class="section" id="new-arrivals">
+  <div class="page-width section-stack">
     <div class="section-heading">
       <div>
         {% if section.settings.eyebrow != blank %}<div class="eyebrow">{{ section.settings.eyebrow }}</div>{% endif %}
         <h2>{{ section.settings.heading }}</h2>
+        {% if section.settings.copy != blank %}<div class="text-muted rich-copy">{{ section.settings.copy }}</div>{% endif %}
       </div>
-      {% if collection != blank %}
-        <a class="btn btn-secondary" href="{{ collection.url }}">View all</a>
+      {% if section.settings.cta_label != blank %}
+        <a class="btn btn-secondary" href="{% if collection != blank %}{{ collection.url }}{% else %}{{ section.settings.cta_link | default: '#' }}{% endif %}">{{ section.settings.cta_label }}</a>
       {% endif %}
     </div>
+
+    {% if section.settings.pill_1 != blank or section.settings.pill_2 != blank or section.settings.pill_3 != blank %}
+      <div class="product-grid-toolbar" style="margin-bottom: 1rem;">
+        {% if section.settings.pill_1 != blank %}<span class="toolbar-pill">{{ section.settings.pill_1 }}</span>{% endif %}
+        {% if section.settings.pill_2 != blank %}<span class="toolbar-pill">{{ section.settings.pill_2 }}</span>{% endif %}
+        {% if section.settings.pill_3 != blank %}<span class="toolbar-pill">{{ section.settings.pill_3 }}</span>{% endif %}
+      </div>
+    {% endif %}
 
     <div class="card-grid">
       {% if collection != blank and collection.products_count > 0 %}
@@ -33,6 +42,12 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Hot selling" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Trending blind boxes and figures" },
+    { "type": "richtext", "id": "copy", "label": "Copy", "default": "<p>Use this zone for the highest-intent assortment: new drops, giftable best sellers, or collector bundles.</p>" },
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "View all" },
+    { "type": "url", "id": "cta_link", "label": "Fallback CTA link" },
+    { "type": "text", "id": "pill_1", "label": "Pill 1", "default": "New this week" },
+    { "type": "text", "id": "pill_2", "label": "Pill 2", "default": "Low-risk gift picks" },
+    { "type": "text", "id": "pill_3", "label": "Pill 3", "default": "Premium figure tier" },
     { "type": "collection", "id": "collection", "label": "Collection" },
     { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 4, "max": 8, "step": 1, "default": 4 }
   ],

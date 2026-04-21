@@ -1,0 +1,65 @@
+<section class="section" id="campaigns">
+  <div class="page-width section-stack">
+    <div class="section-heading">
+      <div>
+        {% if section.settings.eyebrow != blank %}<div class="eyebrow">{{ section.settings.eyebrow }}</div>{% endif %}
+        <h2>{{ section.settings.heading }}</h2>
+        {% if section.settings.copy != blank %}<div class="text-muted rich-copy">{{ section.settings.copy }}</div>{% endif %}
+      </div>
+    </div>
+    <div class="campaign-grid campaign-grid--{{ section.settings.layout }}">
+      {% for block in section.blocks %}
+        <article class="campaign-card{% if block.settings.highlight %} campaign-card--highlight{% endif %}" {{ block.shopify_attributes }}>
+          {% if block.settings.kicker != blank %}<div class="eyebrow">{{ block.settings.kicker }}</div>{% endif %}
+          <h3>{{ block.settings.heading }}</h3>
+          <div class="text-muted rich-copy">{{ block.settings.copy }}</div>
+          {% if block.settings.meta != blank %}<div class="campaign-meta">{{ block.settings.meta }}</div>{% endif %}
+          {% if block.settings.link_label != blank %}
+            <a class="btn {% if block.settings.highlight %}btn-primary{% else %}btn-secondary{% endif %}" href="{{ block.settings.link | default: '#' }}">{{ block.settings.link_label }}</a>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Campaign blocks",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Campaign blocks" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Give merch, launch, and retention moments their own editable homepage real estate" },
+    { "type": "richtext", "id": "copy", "label": "Copy", "default": "<p>These cards work well for seasonal drops, artist collaborations, starter bundles, or VIP list-building pushes that deserve more than a tiny banner.</p>" },
+    { "type": "select", "id": "layout", "label": "Layout", "default": "three", "options": [
+      { "value": "two", "label": "Two columns" },
+      { "value": "three", "label": "Three columns" }
+    ] }
+  ],
+  "blocks": [
+    {
+      "type": "campaign",
+      "name": "Campaign",
+      "settings": [
+        { "type": "checkbox", "id": "highlight", "label": "Highlight card", "default": false },
+        { "type": "text", "id": "kicker", "label": "Kicker", "default": "Artist drop" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Spring capsule countdown" },
+        { "type": "richtext", "id": "copy", "label": "Copy", "default": "<p>Use a bigger card for the hero campaign, then support it with utility campaigns like bundle offers or VIP signup pushes.</p>" },
+        { "type": "text", "id": "meta", "label": "Meta line", "default": "Limited to 500 units" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Explore campaign" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Campaign blocks",
+      "blocks": [
+        { "type": "campaign", "settings": { "highlight": true, "kicker": "Launch hero", "heading": "Toybeta Vault season opener", "copy": "<p>Anchor the homepage with a campaign card that sells the universe, countdown, and bundle logic in one place.</p>", "meta": "VIP access opens 48 hours early", "link_label": "Shop the opener" } },
+        { "type": "campaign", "settings": { "kicker": "Bundle offer", "heading": "Starter shelf bundles", "copy": "<p>Pair blind boxes with a premium figure or accessory so the homepage also nudges average order value.</p>", "meta": "Giftable under $99", "link_label": "See bundles" } },
+        { "type": "campaign", "settings": { "kicker": "Retention", "heading": "Collector club signup", "copy": "<p>Promote restock alerts, member-only drops, and behind-the-scenes content without burying the value in the footer.</p>", "meta": "Members get first-look access", "link_label": "Join the club" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

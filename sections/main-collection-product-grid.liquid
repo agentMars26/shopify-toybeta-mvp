@@ -1,19 +1,49 @@
 <section class="section" style="padding-top:0;">
   <div class="page-width collection-layout">
     <aside class="filter-panel">
-      <div class="eyebrow">Filters</div>
-      <h3>Collection notes</h3>
-      <div class="text-muted">Use Search & Discovery filters later, or swap this panel for Shopify storefront filtering once connected.</div>
-      <ul class="icon-list" style="padding-left:1rem; color: var(--muted);">
-        <li>Series / artist</li>
-        <li>Price range</li>
-        <li>In stock / preorder</li>
-        <li>Blind box / figure / accessory</li>
+      <div>
+        <div class="eyebrow">Filters</div>
+        <h3>Collector-friendly browse cues</h3>
+        <div class="text-muted"><p>Keep this placeholder panel until Shopify Search & Discovery filters are connected.</p></div>
+      </div>
+      <ul class="filter-list">
+        <li><span>Series / artist</span><span class="filter-token">6</span></li>
+        <li><span>Price range</span><span class="filter-token">$</span></li>
+        <li><span>In stock / preorder</span><span class="filter-token">2</span></li>
+        <li><span>Blind box / figure</span><span class="filter-token">4</span></li>
       </ul>
+      <div class="mini-cart-panel">
+        <div class="mini-cart-header">
+          <strong>Mini cart pattern</strong>
+          <span class="badge badge-outline">Placeholder</span>
+        </div>
+        <div class="text-muted"><p>Useful on collection pages when you want the drop momentum visible without forcing a full cart page.</p></div>
+        <div class="mini-cart-items">
+          <div class="drawer-item">
+            <div class="drawer-thumb"></div>
+            <div>
+              <div class="drawer-item-row"><strong>Sample blind box</strong><span>$18</span></div>
+              <div class="text-muted">Qty 1 • Surprise colorway</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </aside>
 
     <div>
       {% paginate collection.products by section.settings.products_per_page %}
+        <div class="product-grid-header">
+          <div>
+            <div class="eyebrow">Shop the lineup</div>
+            <h3 style="margin:0;">{{ paginate.items }} items designed for quick comparison</h3>
+          </div>
+          <div class="product-grid-toolbar">
+            <span class="toolbar-pill">Best sellers first</span>
+            <span class="toolbar-pill">Mobile-optimized cards</span>
+            <span class="toolbar-pill">Drop-ready pricing</span>
+          </div>
+        </div>
+
         <div class="card-grid">
           {% for product in collection.products %}
             {% render 'product-card', product: product %}

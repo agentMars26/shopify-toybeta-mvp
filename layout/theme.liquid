@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}">
+<html lang="{{ request.locale.iso_code }}" data-storefront-mode="shopify_live">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,6 +11,17 @@
     {% endif %}
     {{ content_for_header }}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
+    <script>
+      window.TOYBETA_STOREFRONT_CONFIG = {
+        mode: 'shopify_live',
+        currency: {{ cart.currency.iso_code | default: shop.currency | json }},
+        cart: {
+          freeShippingThreshold: {{ settings.cart_free_shipping_threshold | times: 100 | json }},
+          freeGiftThreshold: {{ settings.cart_free_gift_threshold | times: 100 | json }}
+        }
+      };
+    </script>
+    {{ 'storefront-config.js' | asset_url | script_tag }}
     {{ 'theme.js' | asset_url | script_tag }}
   </head>
   <body class="template-{{ template.name | handle }}">
@@ -21,6 +32,79 @@
     <main id="MainContent" class="site-main" role="main">
       {{ content_for_layout }}
     </main>
+
+    <aside class="cart-drawer" data-cart-drawer aria-hidden="true">
+      <div class="cart-drawer__backdrop" data-cart-close></div>
+      <div class="cart-drawer__panel">
+        <div class="drawer-panel drawer-header">
+          <div>
+            <div class="eyebrow">Mini cart</div>
+            <h3 data-cart-heading>{% if cart.item_count > 0 %}You have {{ cart.item_count }} collector pick{% if cart.item_count != 1 %}s{% endif %} ready{% else %}Your drop is almost locked in{% endif %}</h3>
+          </div>
+          <div class="badge badge-outline" data-cart-count>{{ cart.item_count }} item{% if cart.item_count != 1 %}s{% endif %}</div>
+          <button class="drawer-close" type="button" aria-label="Close cart drawer" data-cart-close>×</button>
+        </div>
+        <div class="drawer-scroll">
+          <div class="drawer-upsell-banner">
+            <div class="drawer-progress-row">
+              <strong data-cart-threshold-copy>Free shipping at {{ settings.cart_free_shipping_threshold | times: 100 | money }}, free gift at {{ settings.cart_free_gift_threshold | times: 100 | money }}</strong>
+              <span class="badge badge-outline" data-cart-progress-label>
+                {% assign free_shipping_threshold = settings.cart_free_shipping_threshold | times: 100 %}
+                {% assign free_gift_threshold = settings.cart_free_gift_threshold | times: 100 %}
+                {% assign progress_percent = cart.total_price | times: 100 | divided_by: free_gift_threshold | at_most: 100 %}
+                {% if cart.total_price >= free_gift_threshold %}Free gift unlocked{% else %}{{ progress_percent }}% to your free gift{% endif %}
+              </span>
+            </div>
+            <div class="progress-track" aria-hidden="true"><span class="progress-fill" data-cart-progress-fill style="width:{% if cart.total_price >= free_gift_threshold %}100{% else %}{{ progress_percent }}{% endif %}%"></span></div>
+            <span class="text-muted" data-cart-progress-copy>
+              {% if cart.total_price < free_shipping_threshold %}
+                Add {{ free_shipping_threshold | minus: cart.total_price | money }} more for free shipping, then {{ free_gift_threshold | minus: cart.total_price | money }} more unlocks the collector gift.
+              {% elsif cart.total_price < free_gift_threshold %}
+                Free shipping unlocked. Add {{ free_gift_threshold | minus: cart.total_price | money }} more to score the collector gift.
+              {% else %}
+                Free shipping and the collector gift are both unlocked. This is the perfect checkout moment.
+              {% endif %}
+            </span>
+          </div>
+          <div class="drawer-items" data-cart-drawer-items>
+            {% if cart.item_count > 0 %}
+              {% for item in cart.items limit: 4 %}
+                <article class="drawer-item">
+                  <div class="drawer-thumb">
+                    {% if item.image != blank %}
+                      {{ item.image | image_url: width: 240 | image_tag: alt: item.product.title }}
+                    {% endif %}
+                  </div>
+                  <div>
+                    <div class="drawer-item-row">
+                      <strong>{{ item.product.title }}</strong>
+                      <span>{{ item.final_line_price | money }}</span>
+                    </div>
+                    <div class="text-muted">Qty {{ item.quantity }}{% if item.variant.title != 'Default Title' %} • {{ item.variant.title }}{% endif %}</div>
+                  </div>
+                </article>
+              {% endfor %}
+            {% else %}
+              <div class="drawer-note text-muted">
+                <p>Use this mini cart pattern as a polished placeholder while the full Ajax cart behavior is still being wired.</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="drawer-footer">
+          <div class="drawer-summary">
+            <div>
+              <div class="eyebrow">Estimated total</div>
+              <strong data-cart-total>{{ cart.total_price | money }}</strong>
+            </div>
+            <a class="btn btn-secondary" href="{{ routes.cart_url }}">View cart</a>
+          </div>
+          <div class="drawer-note text-muted">
+            <p>Great place to call out preorder timing, checkout confidence, or the next cart threshold shoppers should chase.</p>
+          </div>
+        </div>
+      </div>
+    </aside>
 
     {% sections 'footer-group' %}
   </body>

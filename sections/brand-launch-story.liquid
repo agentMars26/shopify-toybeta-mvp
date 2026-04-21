@@ -1,0 +1,103 @@
+<section class="section" id="story">
+  <div class="page-width section-stack">
+    <div class="section-heading">
+      <div>
+        {% if section.settings.eyebrow != blank %}<div class="eyebrow">{{ section.settings.eyebrow }}</div>{% endif %}
+        <h2>{{ section.settings.heading }}</h2>
+        {% if section.settings.intro != blank %}<div class="text-muted rich-copy">{{ section.settings.intro }}</div>{% endif %}
+      </div>
+    </div>
+    <div class="launch-grid">
+      <article class="launch-featured-card">
+        <div class="eyebrow">{{ section.settings.featured_eyebrow }}</div>
+        <h3>{{ section.settings.featured_heading }}</h3>
+        <div class="text-muted rich-copy">{{ section.settings.featured_copy }}</div>
+        {% if section.settings.chip_1 != blank or section.settings.chip_2 != blank or section.settings.chip_3 != blank %}
+          <div class="pill-row">
+            {% if section.settings.chip_1 != blank %}<span class="hero-chip">{{ section.settings.chip_1 }}</span>{% endif %}
+            {% if section.settings.chip_2 != blank %}<span class="hero-chip">{{ section.settings.chip_2 }}</span>{% endif %}
+            {% if section.settings.chip_3 != blank %}<span class="hero-chip">{{ section.settings.chip_3 }}</span>{% endif %}
+          </div>
+        {% endif %}
+        <div class="launch-timeline">
+          {% for block in section.blocks %}
+            {% if block.type == 'timeline_step' %}
+              <div class="timeline-step" {{ block.shopify_attributes }}>
+                <strong>{{ block.settings.step_number | default: forloop.index | prepend: '0' }}</strong>
+                <span>{{ block.settings.text }}</span>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </article>
+      <div class="launch-side-stack">
+        {% for block in section.blocks %}
+          {% if block.type == 'story_card' %}
+            <article class="story-card{% if block.settings.accent_card %} accent-story-card{% endif %}" {{ block.shopify_attributes }}>
+              {% if block.settings.eyebrow != blank %}<div class="eyebrow">{{ block.settings.eyebrow }}</div>{% endif %}
+              <h3>{{ block.settings.heading }}</h3>
+              <div class="text-muted rich-copy">{{ block.settings.copy }}</div>
+              {% if block.settings.link_label != blank %}
+                <a class="story-card-link" href="{{ block.settings.link | default: '#' }}">{{ block.settings.link_label }}</a>
+              {% endif %}
+            </article>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand launch story",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Brand story + launch value" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Give the homepage a reason to feel premium before the shopper even clicks a SKU" },
+    { "type": "richtext", "id": "intro", "label": "Intro copy", "default": "<p>Use this section to explain the world, the launch plan, and why the storefront feels collectible instead of generic.</p>" },
+    { "type": "text", "id": "featured_eyebrow", "label": "Featured eyebrow", "default": "Launch campaign concept" },
+    { "type": "text", "id": "featured_heading", "label": "Featured heading", "default": "Toybeta Vault, a collectible universe with drop-day theater" },
+    { "type": "richtext", "id": "featured_copy", "label": "Featured copy", "default": "<p>Frame the brand around artist collabs, serialized releases, and a collector club. This makes the storefront feel like a destination, not just a catalog.</p>" },
+    { "type": "text", "id": "chip_1", "label": "Chip 1", "default": "Monthly artist drops" },
+    { "type": "text", "id": "chip_2", "label": "Chip 2", "default": "Serialized packaging" },
+    { "type": "text", "id": "chip_3", "label": "Chip 3", "default": "VIP early access" }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_step",
+      "name": "Timeline step",
+      "settings": [
+        { "type": "text", "id": "step_number", "label": "Step number", "default": "01" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Tease the world, the artist, and the hero silhouette." }
+      ]
+    },
+    {
+      "type": "story_card",
+      "name": "Story card",
+      "settings": [
+        { "type": "checkbox", "id": "accent_card", "label": "Accent background", "default": false },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Why it converts" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Built for hype launches and evergreen catalog sales" },
+        { "type": "richtext", "id": "copy", "label": "Copy", "default": "<p>The page now carries a stronger narrative arc, from brand promise to launch mechanics to conversion proof.</p>" },
+        { "type": "text", "id": "link_label", "label": "Link label" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand launch story",
+      "blocks": [
+        { "type": "timeline_step", "settings": { "step_number": "01", "text": "Tease the world, the artist, and the hero silhouette." } },
+        { "type": "timeline_step", "settings": { "step_number": "02", "text": "Open VIP access first with countdown and bundle perks." } },
+        { "type": "timeline_step", "settings": { "step_number": "03", "text": "Push social proof, rarity cues, and mini-cart upsells on launch day." } },
+        { "type": "story_card", "settings": { "accent_card": true, "eyebrow": "Why it converts", "heading": "Built for hype launches and evergreen catalog sales", "copy": "<p>The page now carries a stronger narrative arc, from brand promise to launch mechanics to conversion proof.</p>", "link_label": "See launch flow" } },
+        { "type": "story_card", "settings": { "eyebrow": "Merchandising", "heading": "Story-driven cards with clear tiers", "copy": "<p>Drop badges, vendor names, and price hierarchy stay clean even when the lineup mixes blind boxes, plush, and premium figures.</p>", "link_label": "Plan the assortment" } },
+        { "type": "story_card", "settings": { "eyebrow": "Trust", "heading": "Preorder clarity without clutter", "copy": "<p>Collectors get shipping windows, stock cues, and bundle-friendly CTAs in a format that still feels playful.</p>", "link_label": "Review preorder cues" } },
+        { "type": "story_card", "settings": { "eyebrow": "Retention", "heading": "VIP capture that feels native", "copy": "<p>Newsletter and restock hooks slide naturally into the homepage instead of feeling like an afterthought.</p>", "link_label": "Map retention hooks" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

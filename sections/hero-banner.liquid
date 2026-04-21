@@ -4,10 +4,15 @@
       <div>
         {% if section.settings.eyebrow != blank %}<div class="eyebrow">{{ section.settings.eyebrow }}</div>{% endif %}
         <h1>{{ section.settings.heading }}</h1>
-        <div class="text-muted">{{ section.settings.subtext }}</div>
-        <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem;">
+        <div class="text-muted hero-copy">{{ section.settings.subtext }}</div>
+        <div class="hero-actions">
           {% if section.settings.primary_label != blank %}<a class="btn btn-primary" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label }}</a>{% endif %}
           {% if section.settings.secondary_label != blank %}<a class="btn btn-secondary" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label }}</a>{% endif %}
+        </div>
+        <div class="hero-trust-row">
+          <span class="hero-chip">⭐ Premium unboxing flow</span>
+          <span class="hero-chip">🚚 Clear preorder timing</span>
+          <span class="hero-chip">📱 Mobile-first browse path</span>
         </div>
         <div class="hero-metrics">
           {% for block in section.blocks %}

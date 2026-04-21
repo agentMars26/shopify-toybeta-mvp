@@ -26,5 +26,42 @@
         "default": "Built for collectible toys, blind boxes, and factory-ready demos."
       }
     ]
+  },
+  {
+    "name": "Cart and upsell defaults",
+    "settings": [
+      {
+        "type": "range",
+        "id": "cart_free_shipping_threshold",
+        "label": "Cart free shipping threshold",
+        "min": 25,
+        "max": 500,
+        "step": 5,
+        "default": 75,
+        "unit": "$"
+      },
+      {
+        "type": "range",
+        "id": "cart_free_gift_threshold",
+        "label": "Cart free gift threshold",
+        "min": 25,
+        "max": 500,
+        "step": 5,
+        "default": 90,
+        "unit": "$"
+      },
+      {
+        "type": "text",
+        "id": "default_add_on_metafield_namespace",
+        "label": "Default add-on metafield namespace",
+        "default": "custom"
+      },
+      {
+        "type": "text",
+        "id": "default_add_on_metafield_key",
+        "label": "Default add-on metafield key",
+        "default": "product_add_on"
+      }
+    ]
   }
 ]

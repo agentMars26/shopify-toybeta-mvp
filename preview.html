@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en" class="no-js" data-storefront-mode="local_preview">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Toybeta MVP Preview</title>
+    <meta name="description" content="Static local preview for the Shopify Toybeta MVP theme scaffold.">
+    <link rel="stylesheet" href="assets/theme.css">
+    <script>
+      window.TOYBETA_STOREFRONT_CONFIG = {
+        mode: 'local_preview',
+        currency: 'USD',
+        cart: {
+          freeShippingThreshold: 7500,
+          freeGiftThreshold: 9000
+        }
+      };
+    </script>
+    <script src="assets/storefront-config.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#MainContent">Skip to content</a>
+
+    <div class="announcement-bar">
+      <div class="page-width">Static preview mode, built for quick localhost review before Shopify wiring.</div>
+    </div>
+
+    <header class="site-header">
+      <div class="page-width header-shell">
+        <a class="brand" href="#top">Toybeta MVP</a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#new-arrivals">New arrivals</a>
+          <a href="#story">Story blocks</a>
+          <a href="#campaigns">Campaigns</a>
+          <a href="#collection-preview">Collection</a>
+          <a href="#product-preview">Product</a>
+          <a href="#vip">VIP</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-secondary" href="#collection-preview">Shop layout</a>
+          <button class="btn btn-primary" type="button" data-cart-toggle>Cart preview</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="MainContent" class="site-main" role="main">
+      <section class="hero">
+        <div class="page-width">
+          <div class="hero-card">
+            <div>
+              <div class="eyebrow">Toybeta-inspired demo</div>
+              <h1>Blind box energy, clearer merchandising, faster approvals.</h1>
+              <div class="text-muted hero-copy">
+                <p>A lightweight static preview of the Shopify MVP theme direction, tuned to feel closer to a sellable demo across homepage, collection, product, and mini-cart patterns.</p>
+              </div>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#new-arrivals">Shop new arrivals</a>
+                <a class="btn btn-secondary" href="#product-preview">See product flow</a>
+              </div>
+              <div class="hero-trust-row">
+                <span class="hero-chip">⭐ Premium unboxing flow</span>
+                <span class="hero-chip">🚚 Clear preorder timing</span>
+                <span class="hero-chip">📱 Mobile-first browse path</span>
+              </div>
+              <div class="hero-metrics">
+                <div class="metric">
+                  <div class="eyebrow">Sell-through</div>
+                  <div class="h3">92% in 14 days</div>
+                </div>
+                <div class="metric">
+                  <div class="eyebrow">Average order</div>
+                  <div class="h3">$74</div>
+                </div>
+                <div class="metric">
+                  <div class="eyebrow">Repeat buyers</div>
+                  <div class="h3">38%</div>
+                </div>
+              </div>
+            </div>
+            <div class="hero-media">
+              <img alt="Toybeta inspired hero art" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23ffd5df'/%3E%3Cstop offset='1' stop-color='%23d9d8ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='800' rx='48' fill='url(%23bg)'/%3E%3Ccircle cx='220' cy='240' r='120' fill='%23ffffff' fill-opacity='.55'/%3E%3Ccircle cx='560' cy='210' r='88' fill='%23ff5f7a' fill-opacity='.18'/%3E%3Ccircle cx='520' cy='520' r='170' fill='%236c63ff' fill-opacity='.18'/%3E%3Crect x='168' y='214' width='170' height='260' rx='84' fill='%231f2544'/%3E%3Crect x='360' y='184' width='214' height='314' rx='106' fill='%23ffffff' fill-opacity='.92'/%3E%3Crect x='334' y='488' width='280' height='110' rx='48' fill='%23ff5f7a'/%3E%3Ctext x='400' y='664' text-anchor='middle' font-family='Arial, sans-serif' font-size='40' font-weight='700' fill='%231f2544'%3ETOYBETA PREVIEW%3C/text%3E%3C/svg%3E">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="new-arrivals">
+        <div class="page-width section-stack">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">Hot selling</div>
+              <h2>Trending blind boxes and figures</h2>
+              <div class="text-muted"><p>The card styling now carries stronger pricing hierarchy, product type cues, and an obvious click target.</p></div>
+            </div>
+            <a class="btn btn-secondary" href="#collection-preview">View all</a>
+          </div>
+          <div class="product-grid-toolbar">
+            <span class="toolbar-pill">New this week</span>
+            <span class="toolbar-pill">Giftable picks</span>
+            <span class="toolbar-pill">Premium figure tier</span>
+          </div>
+          <div class="preview-note">This grid is rendered from mock data in <code>assets/preview.js</code>, so you can swap copy, pricing, or badges fast without touching Shopify data.</div>
+          <div class="card-grid" id="preview-product-grid"></div>
+        </div>
+      </section>
+
+      <section class="section" id="story">
+        <div class="page-width section-stack">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">Brand story + launch value</div>
+              <h2>Give the homepage a reason to feel premium before the shopper even clicks a SKU</h2>
+              <div class="text-muted"><p>Use this section to explain the world, the launch plan, and why the storefront feels collectible instead of generic.</p></div>
+            </div>
+          </div>
+          <div class="launch-grid">
+            <article class="launch-featured-card">
+              <div class="eyebrow">Launch campaign concept</div>
+              <h3>Toybeta Vault, a collectible universe with drop-day theater</h3>
+              <div class="text-muted"><p>Frame the brand around artist collabs, serialized releases, and a collector club. This makes the storefront feel like a destination, not just a catalog.</p></div>
+              <div class="pill-row">
+                <span class="hero-chip">Monthly artist drops</span>
+                <span class="hero-chip">Serialized packaging</span>
+                <span class="hero-chip">VIP early access</span>
+              </div>
+              <div class="launch-timeline">
+                <div class="timeline-step"><strong>01</strong><span>Tease the world, the artist, and the hero silhouette.</span></div>
+                <div class="timeline-step"><strong>02</strong><span>Open VIP access first with countdown and bundle perks.</span></div>
+                <div class="timeline-step"><strong>03</strong><span>Push social proof, rarity cues, and mini-cart upsells on launch day.</span></div>
+              </div>
+            </article>
+            <div class="launch-side-stack">
+              <article class="story-card accent-story-card">
+                <div class="eyebrow">Why it converts</div>
+                <h3>Built for hype launches and evergreen catalog sales</h3>
+                <div class="text-muted"><p>The page now carries a stronger narrative arc, from brand promise to launch mechanics to conversion proof.</p></div>
+                <a class="story-card-link" href="#campaigns">See launch flow</a>
+              </article>
+              <article class="story-card">
+                <div class="eyebrow">Merchandising</div>
+                <h3>Story-driven cards with clear tiers</h3>
+                <div class="text-muted"><p>Drop badges, vendor names, and price hierarchy stay clean even when the lineup mixes blind boxes, plush, and premium figures.</p></div>
+                <a class="story-card-link" href="#merch-highlights">Plan the assortment</a>
+              </article>
+              <article class="story-card">
+                <div class="eyebrow">Trust</div>
+                <h3>Preorder clarity without clutter</h3>
+                <div class="text-muted"><p>Collectors get shipping windows, stock cues, and bundle-friendly CTAs in a format that still feels playful.</p></div>
+                <a class="story-card-link" href="#product-preview">Review preorder cues</a>
+              </article>
+              <article class="story-card">
+                <div class="eyebrow">Retention</div>
+                <h3>VIP capture that feels native</h3>
+                <div class="text-muted"><p>Newsletter and restock hooks slide naturally into the homepage instead of feeling like an afterthought.</p></div>
+                <a class="story-card-link" href="#vip">Map retention hooks</a>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="campaigns">
+        <div class="page-width section-stack">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">Campaign blocks</div>
+              <h2>Give merch, launch, and retention moments their own editable homepage real estate</h2>
+              <div class="text-muted"><p>These cards work well for seasonal drops, artist collaborations, starter bundles, or VIP list-building pushes that deserve more than a tiny banner.</p></div>
+            </div>
+          </div>
+          <div class="campaign-grid campaign-grid--three">
+            <article class="campaign-card campaign-card--highlight">
+              <div class="eyebrow">Launch hero</div>
+              <h3>Toybeta Vault season opener</h3>
+              <div class="text-muted"><p>Anchor the homepage with a campaign card that sells the universe, countdown, and bundle logic in one place.</p></div>
+              <div class="campaign-meta">VIP access opens 48 hours early</div>
+              <a class="btn btn-primary" href="#new-arrivals">Shop the opener</a>
+            </article>
+            <article class="campaign-card">
+              <div class="eyebrow">Bundle offer</div>
+              <h3>Starter shelf bundles</h3>
+              <div class="text-muted"><p>Pair blind boxes with a premium figure or accessory so the homepage also nudges average order value.</p></div>
+              <div class="campaign-meta">Giftable under $99</div>
+              <a class="btn btn-secondary" href="#collection-preview">See bundles</a>
+            </article>
+            <article class="campaign-card">
+              <div class="eyebrow">Retention</div>
+              <h3>Collector club signup</h3>
+              <div class="text-muted"><p>Promote restock alerts, member-only drops, and behind-the-scenes content without burying the value in the footer.</p></div>
+              <div class="campaign-meta">Members get first-look access</div>
+              <a class="btn btn-secondary" href="#vip">Join the club</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="merch-highlights">
+        <div class="page-width section-stack">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">Featured merchandising blocks</div>
+              <h2>Make the homepage editable where real merchants actually want control</h2>
+              <div class="text-muted"><p>This section gives a merchant-friendly home to assortment strategy, gifting cues, and premium tier framing that often changes every launch cycle.</p></div>
+            </div>
+          </div>
+          <div class="merch-highlight-grid">
+            <article class="merch-highlight-lead">
+              <div class="eyebrow">Homepage strategy</div>
+              <h3>Use one bigger merchandising callout to frame the entire assortment</h3>
+              <div class="text-muted"><p>Good merchants want to rewrite this area often: new gifting angle, fresh price ladder, current launch story, or a push toward collector bundles.</p></div>
+              <div class="pill-row">
+                <span class="hero-chip">Gift picks under $40</span>
+                <span class="hero-chip">Core blind box ladder</span>
+                <span class="hero-chip">Premium shelf centerpiece</span>
+              </div>
+            </article>
+            <div class="merch-highlight-stack">
+              <article class="merch-highlight-card">
+                <div class="eyebrow">Giftability</div>
+                <h3>Surface price ladders early</h3>
+                <div class="text-muted"><p>Help shoppers self-select from impulse-friendly, core, and premium tiers before they start filtering.</p></div>
+              </article>
+              <article class="merch-highlight-card">
+                <div class="eyebrow">Storytelling</div>
+                <h3>Pair worlds with products</h3>
+                <div class="text-muted"><p>Use editable copy to tie characters, artists, or seasonal narratives directly to what is for sale now.</p></div>
+              </article>
+              <article class="merch-highlight-card">
+                <div class="eyebrow">Conversion</div>
+                <h3>Keep preorder reassurance close</h3>
+                <div class="text-muted"><p>Swap this block as launch timing changes so the homepage always reflects the latest shipping or stock guidance.</p></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="collection-preview">
+        <div class="page-width section-stack">
+          <div class="collection-banner-card">
+            <div>
+              <div class="eyebrow">Collection preview</div>
+              <h2>Collection pages now feel more intentional</h2>
+              <div class="text-muted collection-banner-copy"><p>A clearer hero, a more believable filter rail, and a mini-cart pattern make the browse flow feel closer to a real storefront review.</p></div>
+              <div class="hero-trust-row">
+                <span class="hero-chip">Blind boxes</span>
+                <span class="hero-chip">Limited figures</span>
+                <span class="hero-chip">Gift-ready picks</span>
+              </div>
+            </div>
+            <div class="collection-banner-stats">
+              <div class="collection-stat">
+                <div class="eyebrow">Assortment</div>
+                <strong>24 items</strong>
+                <div class="text-muted">Mix bestseller anchors with fresh drops.</div>
+              </div>
+              <div class="collection-stat">
+                <div class="eyebrow">Merchandising</div>
+                <strong>Price ladder</strong>
+                <div class="text-muted">Make entry, core, and premium tiers obvious.</div>
+              </div>
+              <div class="collection-stat">
+                <div class="eyebrow">Mobile flow</div>
+                <strong>Fast browse</strong>
+                <div class="text-muted">Filters and cards collapse cleanly for handheld review.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="collection-layout">
+            <aside class="filter-panel">
+              <div>
+                <div class="eyebrow">Filters</div>
+                <h3>Collector-friendly browse cues</h3>
+                <div class="text-muted"><p>Keep this placeholder panel until Shopify Search & Discovery filters are connected.</p></div>
+              </div>
+              <ul class="filter-list">
+                <li><span>Series / artist</span><span class="filter-token">6</span></li>
+                <li><span>Price range</span><span class="filter-token">$</span></li>
+                <li><span>In stock / preorder</span><span class="filter-token">2</span></li>
+                <li><span>Blind box / figure</span><span class="filter-token">4</span></li>
+              </ul>
+              <div class="mini-cart-panel cart-pulse-panel">
+                <div class="mini-cart-header">
+                  <strong>Live cart pulse</strong>
+                  <span class="badge badge-outline" id="cart-browse-count">0 items</span>
+                </div>
+                <div class="text-muted"><p>Useful on collection pages when you want the drop momentum visible without forcing a full cart page.</p></div>
+                <div class="mini-cart-items" id="mini-cart-preview"></div>
+              </div>
+            </aside>
+
+            <div>
+              <div class="product-grid-header">
+                <div>
+                  <div class="eyebrow">Shop the lineup</div>
+                  <h3 style="margin:0;">12 items designed for quick comparison</h3>
+                </div>
+                <div class="product-grid-toolbar">
+                  <span class="toolbar-pill">Best sellers first</span>
+                  <span class="toolbar-pill">Mobile-optimized cards</span>
+                  <span class="toolbar-pill">Drop-ready pricing</span>
+                </div>
+              </div>
+              <div class="card-grid" id="preview-product-grid-secondary"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="product-preview">
+        <div class="page-width">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">Product page</div>
+              <h2>Stronger purchase structure with a mini-cart handoff</h2>
+            </div>
+          </div>
+          <div class="product-layout">
+            <div class="product-gallery">
+              <div class="product-gallery-main product-gallery-stage">
+                <img id="product-main-image" alt="Product hero art" src="">
+                <div class="gallery-floating-note" id="gallery-floating-note">Hero packaging shot</div>
+              </div>
+              <div class="product-thumbs" id="product-thumbs"></div>
+              <div class="product-detail-grid">
+                <article class="product-detail-card">
+                  <div class="eyebrow">Merchandising note</div>
+                  <h3>Lead with the hero SKU</h3>
+                  <div class="text-muted"><p>Reserve the first image for the cleanest silhouette or packaging shot, then use detail frames to reinforce value.</p></div>
+                </article>
+                <article class="product-detail-card">
+                  <div class="eyebrow">Drop strategy</div>
+                  <h3>Bundle-friendly copy</h3>
+                  <div class="text-muted"><p>Call out mystery rate, character lineup, or artist story in a way that nudges multi-item carts.</p></div>
+                </article>
+                <article class="product-detail-card">
+                  <div class="eyebrow">Mobile UX</div>
+                  <h3>Sticky purchase panel</h3>
+                  <div class="text-muted"><p>Details stay readable while the form remains close to the primary add-to-cart action.</p></div>
+                </article>
+              </div>
+            </div>
+
+            <div class="product-panel">
+              <div class="product-heading">
+                <div>
+                  <div class="eyebrow">Future Shelf</div>
+                  <h1>Neon Robo Secret Edition</h1>
+                </div>
+                <div class="badge badge-outline">Preorder</div>
+              </div>
+              <div>
+                <span class="price">$39.00</span>
+                <span class="compare-at">$45.00</span>
+              </div>
+              <div class="product-status-row">
+                <span class="hero-chip">Collector-grade packaging</span>
+                <span class="hero-chip">Tracked shipping</span>
+                <span class="hero-chip">Gift note ready</span>
+              </div>
+              <div class="text-muted product-description"><p>A polished product template needs both story and reassurance. This layout gives the price, status, core benefits, and next-step cart behavior a tighter hierarchy.</p></div>
+              <form class="product-form" id="preview-product-form">
+                <div class="option-group">
+                  <label for="variant-demo">Edition</label>
+                  <div class="variant-chip-row" id="variant-chip-row"></div>
+                  <select class="select" id="variant-demo"></select>
+                </div>
+                <div class="mini-launch-strip">
+                  <span class="hero-chip" id="variant-stock-chip">Ships this week</span>
+                  <span class="hero-chip" id="variant-price-chip">$39.00</span>
+                  <span class="hero-chip" id="variant-bundle-chip">Bundle and save 8%</span>
+                </div>
+                <div class="product-actions">
+                  <input class="input" type="number" min="1" value="1" data-qty-input aria-label="Quantity">
+                  <button class="btn btn-primary" type="submit" id="product-submit-button">Add to cart</button>
+                </div>
+              </form>
+              <div class="mini-cart-panel">
+                <div class="mini-cart-header">
+                  <div>
+                    <div class="eyebrow">Cart preview</div>
+                    <strong>Mini cart / drawer pattern</strong>
+                  </div>
+                  <button class="btn btn-secondary" type="button" data-cart-toggle>Open preview</button>
+                </div>
+                <div class="text-muted"><p>This reinforces the next step without forcing shoppers off the product page. Keep it as a demo placeholder or wire it into Ajax cart later.</p></div>
+              </div>
+              <div class="mini-cart-panel">
+                <div class="mini-cart-header">
+                  <div>
+                    <div class="eyebrow">Configurable add-on</div>
+                    <strong>Theme-block today, metafield-ready later</strong>
+                  </div>
+                  <span class="badge badge-outline">No admin needed</span>
+                </div>
+                <div class="text-muted"><p>This preview mirrors the new section pattern: manual add-on cards for local review now, with a clean handoff path to a product metafield once Shopify admin access is available.</p></div>
+                <div class="quick-add-stack" id="preview-addon-stack"></div>
+              </div>
+              <div class="product-benefits">
+                <article class="product-benefit">
+                  <div class="badge">Fast ship</div>
+                  <div class="text-muted"><p>Use for preorder windows, warehouse location, or customs reassurance.</p></div>
+                </article>
+                <article class="product-benefit">
+                  <div class="badge">Giftable</div>
+                  <div class="text-muted"><p>Call out premium packaging, card inserts, or bundle discounts.</p></div>
+                </article>
+                <article class="product-benefit">
+                  <div class="badge">Collector safe</div>
+                  <div class="text-muted"><p>Great slot for material notes, blind box odds, or authenticity cues.</p></div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="page-width">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">Reviews</div>
+              <h2>Collectors love a polished drop experience</h2>
+            </div>
+          </div>
+          <div class="testimonial-grid">
+            <article class="review-card">
+              <div class="badge">★★★★★</div>
+              <h3>Blind box collector</h3>
+              <div class="text-muted"><p>The layout feels premium without slowing down the browse flow. I can spot badges and pricing instantly.</p></div>
+            </article>
+            <article class="review-card">
+              <div class="badge">★★★★★</div>
+              <h3>Factory buyer</h3>
+              <div class="text-muted"><p>Good balance between playful branding and practical merchandising. Easy to imagine with real SKUs loaded in.</p></div>
+            </article>
+            <article class="review-card">
+              <div class="badge">★★★★★</div>
+              <h3>Wholesale lead</h3>
+              <div class="text-muted"><p>This gives us a concrete homepage direction we can approve before doing the full Shopify hookup.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="vip">
+        <div class="page-width">
+          <div class="newsletter-box">
+            <div>
+              <div class="eyebrow">Stay in the loop</div>
+              <h2>Capture restock alerts and VIP drop signups</h2>
+              <div class="text-muted"><p>Use this block in previews to validate messaging before wiring the real Shopify customer form.</p></div>
+            </div>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); this.reset(); alert('Preview only: signup captured for mock review.');">
+              <input class="input" type="email" placeholder="Email address" required>
+              <button class="btn btn-primary" type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="cart-drawer" data-cart-drawer aria-hidden="true">
+      <div class="cart-drawer__backdrop" data-cart-close></div>
+      <div class="cart-drawer__panel">
+        <div class="drawer-panel drawer-header">
+          <div>
+            <div class="eyebrow">Ajax cart preview</div>
+            <h3 id="cart-drawer-heading">Your drop is almost locked in</h3>
+          </div>
+          <button class="drawer-close" type="button" aria-label="Close cart drawer" data-cart-close>×</button>
+        </div>
+        <div class="drawer-scroll">
+          <div class="drawer-upsell-banner">
+            <div class="drawer-progress-row">
+              <strong data-cart-threshold-copy>Free shipping at $75, free gift at $90</strong>
+              <span class="badge badge-outline" id="cart-progress-label">0% to your free gift</span>
+            </div>
+            <div class="progress-track" aria-hidden="true"><span class="progress-fill" id="cart-progress-fill"></span></div>
+            <span class="text-muted" id="cart-progress-copy">Add one more blind box to cross the threshold.</span>
+          </div>
+          <div class="drawer-items" id="cart-drawer-items"></div>
+          <div class="drawer-note text-muted">
+            <p>Great place to call out preorder timing, free shipping threshold, or a bundle nudge before checkout.</p>
+          </div>
+        </div>
+        <div class="drawer-footer">
+          <div class="drawer-summary">
+            <div>
+              <div class="eyebrow">Estimated total</div>
+              <strong id="cart-total">$0.00</strong>
+            </div>
+            <a class="btn btn-secondary" href="#product-preview">View cart</a>
+          </div>
+          <div class="drawer-actions-secondary">
+            <button class="btn btn-secondary" type="button" data-cart-add="upsell">Add collector sleeve $12</button>
+            <button class="btn btn-primary" type="button" data-cart-close>Checkout feel</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <footer class="site-footer section">
+      <div class="page-width footer-shell">
+        <div>
+          <div class="brand">Toybeta MVP</div>
+          <p class="footer-note">Static local preview for the Shopify theme MVP. Edit copy or mock products freely, then port what works into Liquid sections.</p>
+        </div>
+        <div class="footer-note">
+          <div>preview@toybeta.test</div>
+          <div>Austin, United States</div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/theme.js"></script>
+    <script src="assets/preview.js"></script>
+  </body>
+</html>
