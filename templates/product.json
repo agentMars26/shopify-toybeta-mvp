@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "main": { "type": "main-product", "settings": {} },
+    "recommendations": { "type": "product-recommendations", "settings": {} },
+    "testimonials": { "type": "testimonials", "settings": { "heading": "Why fans keep coming back" } }
+  },
+  "order": ["main", "recommendations", "testimonials"]
+}

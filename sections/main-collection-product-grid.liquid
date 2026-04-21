@@ -1,0 +1,45 @@
+<section class="section" style="padding-top:0;">
+  <div class="page-width collection-layout">
+    <aside class="filter-panel">
+      <div class="eyebrow">Filters</div>
+      <h3>Collection notes</h3>
+      <div class="text-muted">Use Search & Discovery filters later, or swap this panel for Shopify storefront filtering once connected.</div>
+      <ul class="icon-list" style="padding-left:1rem; color: var(--muted);">
+        <li>Series / artist</li>
+        <li>Price range</li>
+        <li>In stock / preorder</li>
+        <li>Blind box / figure / accessory</li>
+      </ul>
+    </aside>
+
+    <div>
+      {% paginate collection.products by section.settings.products_per_page %}
+        <div class="card-grid">
+          {% for product in collection.products %}
+            {% render 'product-card', product: product %}
+          {% else %}
+            {% for i in (1..4) %}
+              {% render 'product-card-placeholder', index: i %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          <div style="margin-top:1.5rem;display:flex;gap:.75rem;flex-wrap:wrap;">
+            {% if paginate.previous %}<a class="btn btn-secondary" href="{{ paginate.previous.url }}">Previous</a>{% endif %}
+            {% if paginate.next %}<a class="btn btn-secondary" href="{{ paginate.next.url }}">Next</a>{% endif %}
+          </div>
+        {% endif %}
+      {% endpaginate %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main collection product grid",
+  "settings": [
+    { "type": "range", "id": "products_per_page", "label": "Products per page", "min": 8, "max": 24, "step": 4, "default": 12 }
+  ]
+}
+{% endschema %}

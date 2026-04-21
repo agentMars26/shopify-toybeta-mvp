@@ -1,0 +1,20 @@
+<section class="section" style="padding-bottom:1rem;">
+  <div class="page-width">
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">Collection</div>
+        <h1>{{ collection.title }}</h1>
+      </div>
+    </div>
+    {% if collection.description != blank %}
+      <div class="text-muted">{{ collection.description }}</div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main collection banner",
+  "settings": []
+}
+{% endschema %}

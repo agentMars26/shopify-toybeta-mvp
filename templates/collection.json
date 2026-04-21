@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "banner": { "type": "main-collection-banner", "settings": {} },
+    "grid": { "type": "main-collection-product-grid", "settings": {} },
+    "newsletter": { "type": "newsletter", "settings": { "heading": "Collect demand before the next drop", "text": "<p>Great place for restock alerts, wholesale leads, or preorder updates.</p>" } }
+  },
+  "order": ["banner", "grid", "newsletter"]
+}

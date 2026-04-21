@@ -1,0 +1,64 @@
+<section class="section">
+  <div class="page-width product-layout">
+    <div class="product-gallery">
+      <div class="product-gallery-main">
+        {% if product.featured_media != blank %}
+          {{ product.featured_media | image_url: width: 1200 | image_tag: alt: product.title }}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+      {% if product.images.size > 1 %}
+        <div class="product-thumbs">
+          {% for image in product.images limit: 4 %}
+            {{ image | image_url: width: 400 | image_tag: alt: product.title }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="product-panel">
+      {% if product.vendor != blank %}<div class="eyebrow">{{ product.vendor }}</div>{% endif %}
+      <h1>{{ product.title }}</h1>
+      <div>
+        <span class="price">{{ product.price | money }}</span>
+        {% if product.compare_at_price > product.price %}<span class="compare-at">{{ product.compare_at_price | money }}</span>{% endif %}
+      </div>
+      {% if product.description != blank %}
+        <div class="text-muted" style="margin-top:1rem;">{{ product.description }}</div>
+      {% endif %}
+
+      {% form 'product', product, class: 'product-form' %}
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
+            <select class="select" id="Option-{{ section.id }}-{{ forloop.index0 }}" name="options[{{ option.name | escape }}]">
+              {% for value in option.values %}
+                <option {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
+              {% endfor %}
+            </select>
+          {% endfor %}
+        {% endunless %}
+
+        <div class="qty-row">
+          <label for="Quantity-{{ section.id }}">Qty</label>
+          <input class="input" style="max-width:110px;" id="Quantity-{{ section.id }}" type="number" min="1" value="1" name="quantity" data-qty-input>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Add to cart</button>
+      {% endform %}
+
+      <div class="icon-list" style="margin-top:1.5rem;">
+        <div class="icon-list-item"><span class="badge">Fast ship</span><div class="text-muted">Use this area for preorder timing, factory MOQs, or delivery reassurance.</div></div>
+        <div class="icon-list-item"><span class="badge">Giftable</span><div class="text-muted">Great fit for collectible packaging details and premium unboxing notes.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main product",
+  "settings": []
+}
+{% endschema %}

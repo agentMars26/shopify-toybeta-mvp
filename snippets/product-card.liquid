@@ -1,0 +1,20 @@
+<article class="card">
+  <a href="{{ product.url | within: collection }}">
+    <div class="card-media">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 800 | image_tag: alt: product.title, loading: 'lazy' }}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+    <div class="card-body">
+      {% if product.tags.size > 0 %}<div class="badge">{{ product.tags.first }}</div>{% endif %}
+      <h3>{{ product.title }}</h3>
+      <div class="text-muted">{{ product.vendor }}</div>
+      <div style="margin-top:.75rem;">
+        <span class="price">{{ product.price | money }}</span>
+        {% if product.compare_at_price > product.price %}<span class="compare-at">{{ product.compare_at_price | money }}</span>{% endif %}
+      </div>
+    </div>
+  </a>
+</article>

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Theme settings",
+    "settings": [
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent color",
+        "default": "#ff5f7a"
+      },
+      {
+        "type": "color",
+        "id": "accent_alt_color",
+        "label": "Secondary accent color",
+        "default": "#6c63ff"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "text",
+        "id": "footer_note",
+        "label": "Footer note",
+        "default": "Built for collectible toys, blind boxes, and factory-ready demos."
+      }
+    ]
+  }
+]

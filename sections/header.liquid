@@ -1,0 +1,29 @@
+<header class="site-header">
+  <div class="page-width header-shell">
+    <a class="brand" href="{{ routes.root_url }}">
+      {% if settings.logo != blank %}
+        {{ settings.logo | image_url: width: 240 | image_tag: alt: shop.name }}
+      {% else %}
+        {{ shop.name }}
+      {% endif %}
+    </a>
+
+    {% assign header_menu = section.settings.menu | default: linklists.main-menu %}
+    <nav class="nav" aria-label="Primary navigation">
+      {% for link in header_menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <a class="btn btn-secondary" href="{{ routes.cart_url }}">Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</a>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu" }
+  ]
+}
+{% endschema %}
