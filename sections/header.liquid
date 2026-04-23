@@ -1,3 +1,5 @@
+{% assign header_menu = section.settings.menu | default: linklists.main-menu %}
+
 <header class="site-header">
   <div class="page-width header-shell">
     <a class="brand" href="{{ routes.root_url }}">
@@ -8,18 +10,52 @@
       {% endif %}
     </a>
 
-    {% assign header_menu = section.settings.menu | default: linklists.main-menu %}
-    <nav class="nav" aria-label="Primary navigation">
+    <nav class="nav nav-desktop" aria-label="Primary navigation">
       {% for link in header_menu.links %}
         <a href="{{ link.url }}">{{ link.title }}</a>
       {% endfor %}
     </nav>
 
-    <div class="header-actions">
+    <div class="header-actions header-actions--desktop">
       <a class="btn btn-secondary" href="{{ routes.search_url | default: '/search' }}">Search</a>
       <button class="btn btn-primary" type="button" data-cart-toggle>
         Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}
       </button>
+    </div>
+
+    <div class="header-actions-mobile">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="MobileMenu" aria-label="Open menu" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <button class="btn btn-primary btn-compact" type="button" data-cart-toggle>
+        Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="MobileMenu" data-mobile-menu hidden>
+    <button class="mobile-menu__backdrop" type="button" tabindex="-1" aria-label="Close menu" data-menu-close></button>
+    <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Site menu">
+      <div class="mobile-menu__header">
+        <strong>{{ shop.name }}</strong>
+        <button class="drawer-close" type="button" aria-label="Close menu" data-menu-close>×</button>
+      </div>
+      <nav class="mobile-menu__nav" aria-label="Mobile navigation">
+        {% for link in header_menu.links %}
+          <a href="{{ link.url }}" data-menu-link>
+            <span>{{ link.title }}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        {% endfor %}
+      </nav>
+      <div class="mobile-menu__footer">
+        <a class="btn btn-secondary" href="{{ routes.search_url | default: '/search' }}">Search</a>
+        <button class="btn btn-primary" type="button" data-cart-toggle data-menu-close>
+          Open cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}
+        </button>
+      </div>
     </div>
   </div>
 </header>
