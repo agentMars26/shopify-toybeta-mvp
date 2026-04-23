@@ -53,14 +53,16 @@ Use this when you want to review direction quickly without a Shopify store.
 
 Preview mode files:
 - `preview.html`
+- `preview-checkout.html`
 - `assets/storefront-config.js`
 - `assets/preview.js`
+- `assets/preview-checkout.js`
 
 Preview mode is good for:
 - layout reviews
 - copy and messaging review
 - stakeholder walkthroughs
-- quick interaction checks for cart and merchandising patterns
+- quick interaction checks for cart, merchandising patterns, and a clearly fake checkout handoff
 
 Preview mode is **not** a substitute for real Shopify validation of:
 - products and variants
@@ -79,8 +81,10 @@ Where it is set:
 - `layout/theme.liquid` sets `window.TOYBETA_STOREFRONT_CONFIG.mode = 'shopify_live'`
 
 Rule of thumb:
-- use preview mode for presentation review
+- use preview mode for presentation review and localhost demo checkout walkthroughs
 - use Shopify live mode for commerce validation
+
+The local preview cart now persists in browser storage so `preview.html` can hand off into `preview-checkout.html` without Shopify access.
 
 ## Shopify setup workflow
 1. Create or connect a Shopify theme for this repo.
