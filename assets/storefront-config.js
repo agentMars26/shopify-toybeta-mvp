@@ -11,9 +11,22 @@
   }
 
   function createPreviewCartApi() {
+    const storageKey = globalConfig.previewCartStorageKey || 'toybeta-preview-cart';
+
+    function loadStoredItems() {
+      try {
+        const raw = window.localStorage.getItem(storageKey);
+        const parsed = raw ? JSON.parse(raw) : null;
+        return Array.isArray(parsed) ? parsed : null;
+      } catch (error) {
+        console.warn('Preview cart restore failed', error);
+        return null;
+      }
+    }
+
     const state = {
       currency: globalConfig.currency || 'USD',
-      items: Array.isArray(globalConfig.previewCartItems) ? [...globalConfig.previewCartItems] : []
+      items: loadStoredItems() || (Array.isArray(globalConfig.previewCartItems) ? [...globalConfig.previewCartItems] : [])
     };
     const listeners = new Set();
 
@@ -40,7 +53,16 @@
       };
     }
 
+    function persist() {
+      try {
+        window.localStorage.setItem(storageKey, JSON.stringify(state.items));
+      } catch (error) {
+        console.warn('Preview cart persist failed', error);
+      }
+    }
+
     function emit() {
+      persist();
       const cart = snapshot();
       listeners.forEach((listener) => listener(cart));
       return cart;
@@ -82,6 +104,10 @@
       },
       removeItem(key) {
         state.items = state.items.filter((item) => item.key !== key);
+        return Promise.resolve(emit());
+      },
+      clear() {
+        state.items = [];
         return Promise.resolve(emit());
       },
       formatMoney(cents, currency) {
