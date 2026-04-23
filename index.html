@@ -28,7 +28,7 @@
     <header class="site-header">
       <div class="page-width header-shell">
         <a class="brand" href="#top">Toybeta MVP</a>
-        <nav class="nav" aria-label="Primary navigation">
+        <nav class="nav nav-desktop" aria-label="Primary navigation">
           <a href="#new-arrivals">New arrivals</a>
           <a href="#story">Story blocks</a>
           <a href="#campaigns">Campaigns</a>
@@ -37,11 +37,43 @@
           <a href="#vip">VIP</a>
           <a href="preview-checkout.html">Demo checkout</a>
         </nav>
-        <div class="header-actions">
+        <div class="header-actions header-actions--desktop">
           <a class="btn btn-secondary" href="#collection-preview">Shop layout</a>
           <button class="btn btn-primary" type="button" data-cart-toggle>Cart preview</button>
         </div>
+        <div class="header-actions-mobile">
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="MobileMenu" aria-label="Open menu" data-menu-toggle>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <button class="btn btn-primary btn-compact" type="button" data-cart-toggle>Cart</button>
+        </div>
+      </div>
+      <div class="page-width">
         <p class="preview-cart-feedback" id="preview-cart-feedback" aria-live="polite"></p>
+      </div>
+      <div class="mobile-menu" id="MobileMenu" data-mobile-menu hidden>
+        <button class="mobile-menu__backdrop" type="button" tabindex="-1" aria-label="Close menu" data-menu-close></button>
+        <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Preview menu">
+          <div class="mobile-menu__header">
+            <strong>Toybeta MVP</strong>
+            <button class="drawer-close" type="button" aria-label="Close menu" data-menu-close>×</button>
+          </div>
+          <nav class="mobile-menu__nav" aria-label="Mobile navigation">
+            <a href="#new-arrivals" data-menu-link><span>New arrivals</span><span aria-hidden="true">→</span></a>
+            <a href="#story" data-menu-link><span>Story blocks</span><span aria-hidden="true">→</span></a>
+            <a href="#campaigns" data-menu-link><span>Campaigns</span><span aria-hidden="true">→</span></a>
+            <a href="#collection-preview" data-menu-link><span>Collection</span><span aria-hidden="true">→</span></a>
+            <a href="#product-preview" data-menu-link><span>Product</span><span aria-hidden="true">→</span></a>
+            <a href="#vip" data-menu-link><span>VIP</span><span aria-hidden="true">→</span></a>
+            <a href="preview-checkout.html" data-menu-link><span>Demo checkout</span><span aria-hidden="true">→</span></a>
+          </nav>
+          <div class="mobile-menu__footer">
+            <a class="btn btn-secondary" href="#collection-preview" data-menu-link>Shop layout</a>
+            <button class="btn btn-primary" type="button" data-cart-toggle data-menu-close>Open cart</button>
+          </div>
+        </div>
       </div>
     </header>
 

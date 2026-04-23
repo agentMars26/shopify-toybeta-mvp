@@ -226,7 +226,7 @@
   const defaultFeaturedBaseProduct = previewProducts.find((product) => product.handle === 'pre-sale-the-monsters-labubu-have-a-seat-vinyl-plush-blind-box') || previewProducts[0];
   let activeProductId = defaultFeaturedBaseProduct.id;
   let featuredProduct = toFeaturedProduct(defaultFeaturedBaseProduct);
-  let selectedVariantId = featuredProduct.variants[0].id;
+  let selectedVariantId = null;
   let selectedMediaId = featuredProduct.media[0].id;
   let previewCart = null;
   let feedbackTimer = null;
@@ -259,8 +259,22 @@
     return previewProducts.find((product) => String(product.id) === String(productId) || product.handle === productId);
   }
 
+  function getDefaultVariant(product = getProduct(activeProductId), productView = featuredProduct) {
+    const variants = productView?.variants || [];
+    if (!variants.length) return null;
+
+    const matchingBasePrice = variants.find((variant) => variant.available && Number(variant.price) === Number(product?.price));
+    if (matchingBasePrice) return matchingBasePrice;
+
+    const cheapestAvailable = [...variants]
+      .filter((variant) => variant.available)
+      .sort((a, b) => Number(a.price) - Number(b.price))[0];
+
+    return cheapestAvailable || variants[0];
+  }
+
   function getSelectedVariant() {
-    return featuredProduct.variants.find((variant) => variant.id === selectedVariantId) || featuredProduct.variants[0];
+    return featuredProduct.variants.find((variant) => variant.id === selectedVariantId) || getDefaultVariant() || featuredProduct.variants[0];
   }
 
   function setActiveProduct(productId) {
@@ -268,7 +282,7 @@
     if (!product || product.id === 'collector-sleeve') return;
     activeProductId = product.id;
     featuredProduct = toFeaturedProduct(product);
-    selectedVariantId = featuredProduct.variants[0]?.id;
+    selectedVariantId = getDefaultVariant(product, featuredProduct)?.id;
     selectedMediaId = featuredProduct.media[0]?.id;
     renderPreviewProducts();
     syncSecondaryGrid();
@@ -566,11 +580,15 @@
     if (addButton) {
       const productId = addButton.dataset.previewAdd;
       const product = getProduct(productId);
+      const defaultVariant = product ? getDefaultVariant(product, toFeaturedProduct(product)) : null;
       if (product) {
         await addPreviewItem({
           productId,
-          variantTitle: product.kicker,
-          overrides: { unitPrice: product.price, image: getProductImage(product, product.kicker) },
+          variantTitle: defaultVariant?.title || product.kicker,
+          overrides: {
+            unitPrice: defaultVariant?.price ?? product.price,
+            image: getProductImage(product, defaultVariant?.title || product.kicker)
+          },
           successMessage: `${product.title} added to the preview cart.`,
           button: addButton
         });
@@ -663,6 +681,8 @@
     });
   }
 
+  selectedVariantId = getDefaultVariant(defaultFeaturedBaseProduct, featuredProduct)?.id;
+
   renderPreviewProducts();
   syncSecondaryGrid();
   renderAddOnPreview();
@@ -674,8 +694,10 @@
 
   if (previewStorefront.config.mode === 'local_preview') {
     previewCartApi.getCart().then((cart) => {
-      if (!cart?.item_count && !window.TOYBETA_STOREFRONT_CONFIG?.previewCartItems?.length) {
-        addToCart(7902382751894, 1, 'Best seller', { unitPrice: 3999, image: getProductImage(getProduct(7902382751894), 'Blind box') });
+      const storageKey = previewStorefrontConfig.previewCartStorageKey || 'toybeta-preview-cart';
+      const hasStoredCart = window.localStorage.getItem(storageKey) !== null;
+      if (!cart?.item_count && !hasStoredCart && !window.TOYBETA_STOREFRONT_CONFIG?.previewCartItems?.length) {
+        addToCart(7902382751894, 1, '1 Box', { unitPrice: 3999, image: getProductImage(getProduct(7902382751894), '1 Box') });
       }
     });
   }
