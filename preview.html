@@ -35,11 +35,13 @@
           <a href="#collection-preview">Collection</a>
           <a href="#product-preview">Product</a>
           <a href="#vip">VIP</a>
+          <a href="preview-checkout.html">Demo checkout</a>
         </nav>
         <div class="header-actions">
           <a class="btn btn-secondary" href="#collection-preview">Shop layout</a>
           <button class="btn btn-primary" type="button" data-cart-toggle>Cart preview</button>
         </div>
+        <p class="preview-cart-feedback" id="preview-cart-feedback" aria-live="polite"></p>
       </div>
     </header>
 
@@ -345,21 +347,21 @@
             <div class="product-panel">
               <div class="product-heading">
                 <div>
-                  <div class="eyebrow">Future Shelf</div>
-                  <h1>Neon Robo Secret Edition</h1>
+                  <div class="eyebrow" id="product-kicker">Future Shelf</div>
+                  <h1 id="product-title">Neon Robo Secret Edition</h1>
                 </div>
-                <div class="badge badge-outline">Preorder</div>
+                <div class="badge badge-outline" id="product-badge">Preorder</div>
               </div>
               <div>
-                <span class="price">$39.00</span>
-                <span class="compare-at">$45.00</span>
+                <span class="price" id="product-price">$39.00</span>
+                <span class="compare-at" id="product-compare-at">$45.00</span>
               </div>
-              <div class="product-status-row">
+              <div class="product-status-row" id="product-status-row">
                 <span class="hero-chip">Collector-grade packaging</span>
                 <span class="hero-chip">Tracked shipping</span>
                 <span class="hero-chip">Gift note ready</span>
               </div>
-              <div class="text-muted product-description"><p>A polished product template needs both story and reassurance. This layout gives the price, status, core benefits, and next-step cart behavior a tighter hierarchy.</p></div>
+              <div class="text-muted product-description"><p id="product-description">A polished product template needs both story and reassurance. This layout gives the price, status, core benefits, and next-step cart behavior a tighter hierarchy.</p></div>
               <form class="product-form" id="preview-product-form">
                 <div class="option-group">
                   <label for="variant-demo">Edition</label>
@@ -384,7 +386,8 @@
                   </div>
                   <button class="btn btn-secondary" type="button" data-cart-toggle>Open preview</button>
                 </div>
-                <div class="text-muted"><p>This reinforces the next step without forcing shoppers off the product page. Keep it as a demo placeholder or wire it into Ajax cart later.</p></div>
+                <div class="text-muted"><p>This reinforces the next step without forcing shoppers off the product page. In local preview mode, it now hands off to a separate demo checkout flow instead of a real Shopify checkout.</p></div>
+                <a class="btn btn-primary" href="preview-checkout.html">Continue to demo checkout</a>
               </div>
               <div class="mini-cart-panel">
                 <div class="mini-cart-header">
@@ -467,20 +470,21 @@
         <div class="drawer-panel drawer-header">
           <div>
             <div class="eyebrow">Ajax cart preview</div>
-            <h3 id="cart-drawer-heading">Your drop is almost locked in</h3>
+            <h3 id="cart-drawer-heading" data-cart-heading>Your drop is almost locked in</h3>
           </div>
+          <div class="badge badge-outline" data-cart-count>0 items</div>
           <button class="drawer-close" type="button" aria-label="Close cart drawer" data-cart-close>×</button>
         </div>
         <div class="drawer-scroll">
           <div class="drawer-upsell-banner">
             <div class="drawer-progress-row">
               <strong data-cart-threshold-copy>Free shipping at $75, free gift at $90</strong>
-              <span class="badge badge-outline" id="cart-progress-label">0% to your free gift</span>
+              <span class="badge badge-outline" id="cart-progress-label" data-cart-progress-label>0% to your free gift</span>
             </div>
-            <div class="progress-track" aria-hidden="true"><span class="progress-fill" id="cart-progress-fill"></span></div>
-            <span class="text-muted" id="cart-progress-copy">Add one more blind box to cross the threshold.</span>
+            <div class="progress-track" aria-hidden="true"><span class="progress-fill" id="cart-progress-fill" data-cart-progress-fill></span></div>
+            <span class="text-muted" id="cart-progress-copy" data-cart-progress-copy>Add one more blind box to cross the threshold.</span>
           </div>
-          <div class="drawer-items" id="cart-drawer-items"></div>
+          <div class="drawer-items" id="cart-drawer-items" data-cart-drawer-items></div>
           <div class="drawer-note text-muted">
             <p>Great place to call out preorder timing, free shipping threshold, or a bundle nudge before checkout.</p>
           </div>
@@ -489,13 +493,13 @@
           <div class="drawer-summary">
             <div>
               <div class="eyebrow">Estimated total</div>
-              <strong id="cart-total">$0.00</strong>
+              <strong id="cart-total" data-cart-total>$0.00</strong>
             </div>
             <a class="btn btn-secondary" href="#product-preview">View cart</a>
           </div>
           <div class="drawer-actions-secondary">
             <button class="btn btn-secondary" type="button" data-cart-add="upsell">Add collector sleeve $12</button>
-            <button class="btn btn-primary" type="button" data-cart-close>Checkout feel</button>
+            <a class="btn btn-primary" href="preview-checkout.html">Checkout demo →</a>
           </div>
         </div>
       </div>
